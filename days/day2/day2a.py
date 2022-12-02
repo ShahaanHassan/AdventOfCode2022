@@ -20,23 +20,15 @@ def get_outcome(opponent, me):
 
 
 def get_score(shape, outcome):
-    score = outcome
     if (shape == 'X'):
-        score += 1
+        return 1 + outcome
     elif (shape == 'Y'):
-        score += 2
+        return 2 + outcome
     else:
-        score += 3
-
-    return score
-
+        return 3 + outcome
 
 def calculate_final_score():
     opponent, me = read_input()
-    final_score = 0
-    for o, m in zip(opponent, me):
-        final_score += get_score(m, get_outcome(o, m))
-
-    return final_score
+    return sum(get_score(m, get_outcome(o, m)) for o, m in zip(opponent, me))
 
 print(calculate_final_score())

@@ -9,37 +9,29 @@ def read_input() -> list:
     return opponent, me
 
 
-def get_move(op, outcome):
+def get_move(o: str, outcome: int) -> int:
     losing_moves = {'A': 'Z', 'B': 'X', 'C': 'Y'}
     winning_moves = {'A': 'Y', 'B': 'Z', 'C': 'X'}
 
     if (outcome == 'w'):
-        return ord(winning_moves.get(op)) - 87
+        return ord(winning_moves.get(o)) - 87
     elif(outcome == 'l'):
-        return ord(losing_moves.get(op)) - 87
+        return ord(losing_moves.get(o)) - 87
     else:
-        return ord(op) - 64
+        return ord(o) - 64
 
 
-def get_score(m, op):
-    score = 0
-
+def get_score(o: str, m: str) -> int:
     if (m == 'X'):
-        score += get_move(op, 'l')
+        return get_move(o, 'l')
     elif (m == 'Y'):
-        score += 3 + get_move(op, 'd')
+        return 3 + get_move(o, 'd')
     else:
-        score += 6 + get_move(op, 'w')
-
-    return score
+        return 6 + get_move(o, 'w')
 
 
-def calculate_final_score():
+def calculate_final_score() -> int:
     opponent, me = read_input()
-    final_score = 0
-    for o, m in zip(opponent, me):
-        final_score += get_score(m, o)
-
-    return final_score
+    return sum(get_score(o, m) for o, m in zip(opponent, me))
 
 print(calculate_final_score())
