@@ -1,6 +1,6 @@
 
 def read_input() -> list:
-    with open('./days/input.txt', 'r') as file:
+    with open('./days/day1/input.txt', 'r') as file:
         return file.read().split('\n\n')
 
 
