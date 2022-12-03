@@ -14,7 +14,7 @@ def get_sum() -> int:
     score = 0
     for items in read_input():
         first_half, last_half = set(items[len(items) // 2:]), set(items[:len(items) // 2])
-        common = first_half&last_half
+        common = first_half & last_half
         score += get_score(common.pop())
     return score
 

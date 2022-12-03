@@ -15,7 +15,7 @@ def get_sum() -> int:
     items = read_input();
     for i in range(0, len(items), 3):
         a, b, c = set(items[i]), set(items[i+1]), set(items[i+2])
-        common = a&b&c
+        common = a & b & c
         score += get_score(common.pop())
     return score
 
