@@ -16,7 +16,7 @@ def read_input() -> list:
                         if crate != ' ':
                             stacks[i].appendleft(crate)
                 else:
-                    instructions += [re.findall('\d+', line)]
+                    instructions += [map(lambda x: int(x), re.findall('\d+', line))]
         return stacks, instructions
 
 
@@ -24,8 +24,8 @@ def stack_boxes() -> str:
     stacks, instructions = read_input()
     for instruction in instructions:
         amount, begin, end = instruction
-        for _ in range(int(amount)):
-            stacks[int(end) - 1].append(stacks[int(begin) - 1].pop())
+        for _ in range(amount):
+            stacks[end - 1].append(stacks[begin - 1].pop())
     return ''.join(s.pop() for s in stacks)
 
 
