@@ -5,18 +5,17 @@ def read_input() -> list:
         return file.readline()
 
 
-def find_marker():
+def find_marker() -> int:
     signal = read_input()
     chars = list(signal[:14])
 
     for i in range(14, len(signal)):
-        if len(chars) == 14:
-            if len(set(chars)) == 14:
-                return i
-            else:
-                chars.pop(0)
+        if len(set(chars)) == 14:
+            return i
+        else:
+            chars.pop(0)
         chars.append(signal[i])
-    return 0
+    return -1
 
 
 print(find_marker())
