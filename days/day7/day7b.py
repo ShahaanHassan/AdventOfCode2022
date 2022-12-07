@@ -50,7 +50,7 @@ def get_file_tree():
     return root_directory
 
 
-def get_smallest_but_big_enough(root_dir):
+def get_smallest_but_big_enough(root_dir) -> int:
     smallest = inf
     space_needed = 30000000 - (70000000 - root_dir.get_file_size())
     queue = deque([root_dir])

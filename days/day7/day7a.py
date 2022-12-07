@@ -49,7 +49,7 @@ def get_file_tree():
     return root_directory
 
 
-def get_big_ones(root_dir):
+def get_big_ones(root_dir) -> int:
     sum = 0
     queue = deque([root_dir])
     while len(queue) != 0:
