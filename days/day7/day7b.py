@@ -54,7 +54,7 @@ def get_smallest_but_big_enough(root_dir) -> int:
     smallest = inf
     space_needed = 30000000 - (70000000 - root_dir.get_file_size())
     queue = deque([root_dir])
-    while len(queue) != 0:
+    while queue:
         current_dir = queue.pop()
         size = current_dir.get_file_size()
         if size >= space_needed and size < smallest:
