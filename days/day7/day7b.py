@@ -7,7 +7,7 @@ class Directory:
     def __init__(self, name, parent=None):
         self.name = name
         self.parent = parent
-        self.files = {}
+        self.files = {} # Don't actually need file names but fine
         self.children = {}
 
     def add_child(self, child):
@@ -50,7 +50,7 @@ def get_file_tree():
     return root_directory
 
 
-def get_big_ones(root_dir):
+def get_smallest_but_big_enough(root_dir):
     smallest = inf
     space_needed = 30000000 - (70000000 - root_dir.get_file_size())
     queue = deque([root_dir])
@@ -63,4 +63,5 @@ def get_big_ones(root_dir):
     return smallest
         
 
-print(get_big_ones(get_file_tree()))
+print(get_smallest_but_big_enough(get_file_tree()))
+

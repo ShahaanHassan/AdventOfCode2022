@@ -6,7 +6,7 @@ class Directory:
     def __init__(self, name, parent=None):
         self.name = name
         self.parent = parent
-        self.files = {}
+        self.files = {} # Don't actually need file names but fine
         self.children = {}
 
     def add_child(self, child):
