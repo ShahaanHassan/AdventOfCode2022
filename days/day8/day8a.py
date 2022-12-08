@@ -22,7 +22,9 @@ def all_smaller(tree, line) -> bool:
 
 def check_tree(x, y, forrest) -> int:
     tree = forrest[x][y]
-    if on_edge(x, y, forrest) or all_smaller(tree, forrest[x][:y]) or all_smaller(tree, forrest[x][y+1:]) or all_smaller(tree, get_col(y, forrest)[:x]) or all_smaller(tree, get_col(y, forrest)[x+1:]):
+    if on_edge(x, y, forrest) or all_smaller(tree, forrest[x][:y]) or \
+        all_smaller(tree, forrest[x][y+1:]) or all_smaller(tree, get_col(y, forrest)[:x]) or \
+            all_smaller(tree, get_col(y, forrest)[x+1:]):
         return 1
     else:
         return 0
