@@ -10,7 +10,7 @@ def get_col(y, forrest):
 
 
 def on_edge(x, y, forrest) -> bool:
-    return x == 0 or x == len(forrest[0]) or y == 0 or y == len(forrest[0])
+    return x == 0 or x == len(forrest[0]) - 1 or y == 0 or y == len(forrest[0]) - 1
 
 
 def all_smaller(tree, line) -> bool:
