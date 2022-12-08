@@ -16,7 +16,7 @@ def get_view(tree, line) -> int:
     for other_tree in line:
         smaller += 1
         if other_tree >= tree:
-            return smaller
+            break
     return smaller
 
 
