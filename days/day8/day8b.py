@@ -5,7 +5,7 @@ def read_input() -> list:
         return [[int(x) for x in line.rstrip()] for line in file]
 
 
-def get_col(y, forrest):
+def get_col(y, forrest) -> list:
     return [row[y] for row in forrest]
 
 
@@ -32,8 +32,8 @@ def check_tree_view(x, y, forrest) -> int:
 def get_best_view():
     forrest = read_input()
     best_view = 0
-    for x, row in enumerate(forrest):
-        for y, col in enumerate(row):
+    for x, row in enumerate(forrest[1:len(forrest) - 1], 1):
+        for y in range(1, len(row) - 1):
             view = check_tree_view(x, y, forrest)
             if view > best_view:
                 best_view = view

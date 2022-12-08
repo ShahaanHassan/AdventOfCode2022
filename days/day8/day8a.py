@@ -5,12 +5,8 @@ def read_input() -> list:
         return [[int(x) for x in line.rstrip()] for line in file]
 
 
-def get_col(y, forrest):
+def get_col(y, forrest) -> list:
     return [row[y] for row in forrest]
-
-
-def on_edge(x, y, forrest) -> bool:
-    return x == 0 or x == len(forrest[0]) - 1 or y == 0 or y == len(forrest[0]) - 1
 
 
 def all_smaller(tree, line) -> bool:
@@ -22,8 +18,8 @@ def all_smaller(tree, line) -> bool:
 
 def check_tree(x, y, forrest) -> int:
     tree = forrest[x][y]
-    if on_edge(x, y, forrest) or all_smaller(tree, forrest[x][:y]) or \
-        all_smaller(tree, forrest[x][y+1:]) or all_smaller(tree, get_col(y, forrest)[:x]) or \
+    if  all_smaller(tree, forrest[x][:y]) or all_smaller(tree, forrest[x][y+1:]) or \
+         all_smaller(tree, get_col(y, forrest)[:x]) or \
             all_smaller(tree, get_col(y, forrest)[x+1:]):
         return 1
     else:
@@ -32,9 +28,9 @@ def check_tree(x, y, forrest) -> int:
 
 def highest_trees():
     forrest = read_input()
-    total = 0
-    for x, row in enumerate(forrest):
-        for y, col in enumerate(row):
+    total = len(forrest)*4 - 4
+    for x, row in enumerate(forrest[1:len(forrest) - 1], 1):
+        for y in range(1, len(row) - 1):
             total += check_tree(x, y, forrest)
     return total
 
