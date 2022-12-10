@@ -1,4 +1,3 @@
-from math import floor
 
 
 def read_input() -> list:
@@ -7,7 +6,7 @@ def read_input() -> list:
 
 
 def add_pixel(cycle, register, output) -> bool:
-    middle = register + (floor(cycle / 40) * 40)
+    middle = register + ((cycle // 40) * 40)
     if cycle - 1 in [middle - 1, middle, middle + 1]:
         output.append('#')
     else:
