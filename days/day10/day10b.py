@@ -14,11 +14,11 @@ def add_pixel(cycle, register, output) -> bool:
 
 
 def process_instructions() -> int:
-    input = read_input()
+    inputs = read_input()
     cycle = 0
     register = 1
     output = []
-    for command in input:
+    for command in inputs:
         if command[0] == 'addx':
             for _ in range(2):
                 cycle += 1

@@ -10,21 +10,22 @@ def check_cycle(cycle) -> bool:
 
 
 def process_instructions() -> int:
-    input = read_input()
-    sum = cycle = 0
+    inputs = read_input()
+    signal_sum = cycle = 0
     register = 1
-    for command in input:
+    for command in inputs:
         if command[0] == 'addx':
             for _ in range(2):
                 cycle += 1
                 if check_cycle(cycle):
-                    sum += cycle * register
+                    signal_sum += cycle * register
             register += int(command[1])
         else:
             cycle += 1
             if check_cycle(cycle):
-                sum += cycle * register
-    return sum
+                signal_sum += cycle * register
+    return signal_sum
 
 
 print(process_instructions())
+
