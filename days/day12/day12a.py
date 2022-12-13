@@ -50,10 +50,11 @@ def get_shortest_path() -> int:
 
             seen.add(current)
             for point in get_neighbours(current, grid):
-                diff = get_elevation(grid[point[0]][point[1]]) - get_elevation(grid[current[0]][current[1]])
-                if diff <= 1 and point not in seen:
-                    queue.append(point)
-                    distances[point] = distances[current] + 1
+                if point not in seen:
+                    diff = get_elevation(grid[point[0]][point[1]]) - get_elevation(grid[current[0]][current[1]])
+                    if diff <= 1:
+                        queue.append(point)
+                        distances[point] = distances[current] + 1
     return -1
 
 
