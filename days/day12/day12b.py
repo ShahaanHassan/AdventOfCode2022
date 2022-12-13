@@ -16,11 +16,11 @@ def get_elevation(letter) -> int:
         return ord(letter) - 96
 
 
-def get_start(grid):
+def get_start(grid) -> tuple:
     for x, row in enumerate(grid):
         for y, col in enumerate(row):
-            if col == 'S' or col == 'a':
-                yield (x, y)
+            if col == 'E':
+                return (x, y)
 
 
 def get_neighbours(point, grid):
@@ -34,12 +34,9 @@ def get_neighbours(point, grid):
         yield (point[0], point[1] + 1)
 
 
-def find_closest_start() -> int:
+def get_shortest_path() -> int:
     grid = read_input()
-    return min(get_shortest_path(s, grid) for s in get_start(grid))
-
-
-def get_shortest_path(start, grid) -> int:
+    start = get_start(grid)
     queue = deque([start])
     seen = set()
     distances = {start: 0}
@@ -48,17 +45,17 @@ def get_shortest_path(start, grid) -> int:
         current = queue.popleft()
 
         if current not in seen:
-            if grid[current[0]][current[1]] == 'E':
+            current_char = grid[current[0]][current[1]]
+            if current_char == 'S' or current_char == 'a':
                 return distances[current]
 
             seen.add(current)
             for point in get_neighbours(current, grid):
-                diff = get_elevation(
-                    grid[point[0]][point[1]]) - get_elevation(grid[current[0]][current[1]])
-                if diff <= 1 and point not in seen:
+                diff = get_elevation(grid[point[0]][point[1]]) - get_elevation(grid[current[0]][current[1]])
+                if diff >= -1 and point not in seen:
                     queue.append(point)
                     distances[point] = distances[current] + 1
-    return inf
+    return -1
 
 
-print(find_closest_start())
+print(get_shortest_path())
